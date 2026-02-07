@@ -23,8 +23,8 @@ export default function Home() {
         <Clients />
         <CompaniesCapsuleSection />
         <OurWork />
-        <Services />
         <Process/>
+        <Services />
         <BTS />
         <CTA />
       </main>
