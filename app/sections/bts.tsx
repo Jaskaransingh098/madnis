@@ -7,18 +7,18 @@ import { motion } from "framer-motion";
 
 
 const videos = [
-  "/bts/1.mp4",
-  "/bts/2.mp4",
-  "/bts/3.MOV",
-  "/bts/4.mp4",
-  "/bts/5.MOV",
-  "/bts/6.MOV",
-  "/bts/7.mp4",
-  "/bts/8.mp4",
-  "/bts/9.mp4",
-  "/bts/10.mp4",
-  "/bts/11.MOV",
-  "/bts/12.mp4",
+  "/bts/compressed_1.mp4",
+  "/bts/compressed_2.mp4",
+  "/bts/compressed_3.MOV",
+  "/bts/compressed_4.mp4",
+  "/bts/compressed_5.MOV",
+  "/bts/compressed_6.MOV",
+  "/bts/compressed_7.mp4",
+  "/bts/compressed_8.mp4",
+  "/bts/compressed_9.mp4",
+  "/bts/compressed_10.mp4",
+  "/bts/compressed_11.MOV",
+  "/bts/compressed_12.mp4",
 ];
 
 
