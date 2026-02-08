@@ -10,7 +10,6 @@ import Process from "./sections/process";
 import OurWork from "./sections/videos";
 import Clients from "./sections/clients";
 import CompaniesCapsuleSection from "./sections/companiesWork";
-import process from "./sections/process";
 
 export default function Home() {
   return (

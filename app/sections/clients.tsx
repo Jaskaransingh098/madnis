@@ -28,7 +28,7 @@ const logos = [
   "/client-logos/25.png",
 ];
 
-// 🎯 Carefully designed bubble layout
+
 const bubbles = [
   { top: "10%", left: "18%", size: 130 },
   { top: "6%", left: "38%", size: 110 },
