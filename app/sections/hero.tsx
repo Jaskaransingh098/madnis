@@ -48,7 +48,7 @@ export default function Hero() {
         </div>
         <div className="absolute bottom-50 left-[5vw] z-10">
           <button className="px-8 py-3 rounded-full border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition">
-            Start Your Project
+            Start Your Madnis journey
           </button>
         </div>
 

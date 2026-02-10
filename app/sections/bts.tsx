@@ -8,17 +8,17 @@ import { motion } from "framer-motion";
 
 const videos = [
   "/bts/compressed_1.mp4",
-  "/bts/compressed_2.mp4",
-  "/bts/compressed_3.MOV",
-  "/bts/compressed_4.mp4",
+  "/bts/compressed_2.MOV",
+  "/bts/compressed_3.MP4",
+  "/bts/compressed_4.MP4",
   "/bts/compressed_5.MOV",
   "/bts/compressed_6.MOV",
-  "/bts/compressed_7.mp4",
-  "/bts/compressed_8.mp4",
-  "/bts/compressed_9.mp4",
-  "/bts/compressed_10.mp4",
+  "/bts/compressed_7.MOV",
+  "/bts/compressed_8.MOV",
+  "/bts/compressed_9.MOV",
+  "/bts/compressed_10.MOV",
   "/bts/compressed_11.MOV",
-  "/bts/compressed_12.mp4",
+  // "/bts/compressed_12.mp4",
 ];
 
 
@@ -56,7 +56,7 @@ export default function BtsMasonry() {
 
     animationRef.current = gsap.to(scrollRef.current, {
       x: -width,
-      duration: 45,
+      duration: 25,
       ease: "none",
       repeat: -1,
     });
@@ -71,7 +71,7 @@ export default function BtsMasonry() {
 
   return (
     <section className="bg-black py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="w-full mx-auto px-6">
         <h2 className="text-white text-4xl md:text-5xl font-bold mb-16">
           Behind The Scenes
         </h2>

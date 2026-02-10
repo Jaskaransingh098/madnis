@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const logos = [
   "/client-logos/1.png",
   "/client-logos/2.png",
@@ -27,7 +29,6 @@ const logos = [
   "/client-logos/24.png",
   "/client-logos/25.png",
 ];
-
 
 const bubbles = [
   { top: "10%", left: "18%", size: 130 },
@@ -63,39 +64,65 @@ const bubbles = [
 
 export default function Clients() {
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center mt-10">
+    <section className="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center">
+
       {/* CENTER TEXT */}
       <h2 className="absolute z-20 text-white text-6xl font-serif text-center leading-tight">
-       75+ brands <br /> already said 'Wow'.
+        75+ brands <br /> already said "Wow".
       </h2>
 
-      {/* LOGO BUBBLES */}
+      {/* BUBBLES */}
       {bubbles.map((bubble, index) => (
-        <div
+        <FloatingBubble
           key={index}
-          className="absolute rounded-full flex items-center justify-center pt-10"
-          style={{
-            top: bubble.top,
-            left: bubble.left,
-            width: bubble.size,
-            height: bubble.size,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          {/* Circle Styling */}
-          <div className="relative w-full h-full rounded-full bg-gradient-to-br from-[#3a3a3a] to-[#1f1f1f] shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex items-center justify-center">
-            
-            <img
-              src={logos[index]}
-              alt="client"
-              className="w-[205%] h-[205%] object-contain brightness-110"
-            />
-          </div>
-        </div>
+          bubble={bubble}
+          logo={logos[index]}
+        />
       ))}
-
-      {/* Bottom fade */}
-      {/* <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-black to-transparent" /> */}
     </section>
+  );
+}
+
+function FloatingBubble({ bubble, logo }: any) {
+
+  const floatDuration = 6 + Math.random() * 6;
+
+  return (
+    <motion.div
+      initial={{ y: 0 }}
+      animate={{ y: [0, -12, 0] }}
+      transition={{
+        duration: floatDuration,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      whileHover={{ scale: 1.15 }}
+      className="absolute"
+      style={{
+        top: bubble.top,
+        left: bubble.left,
+        width: bubble.size,
+        height: bubble.size,
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      {/* Glass Bubble */}
+      <div className="relative w-full h-full rounded-full 
+      bg-white/5 backdrop-blur-md
+      border border-white/10
+      shadow-[0_25px_80px_rgba(0,0,0,0.9)]
+      flex items-center justify-center">
+
+        {/* Glow Layer */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-40" />
+
+        {/* Logo */}
+        <img
+          src={logo}
+          alt="client"
+          className="w-[60%] h-[60%] object-contain brightness-110"
+        />
+      </div>
+    </motion.div>
   );
 }
