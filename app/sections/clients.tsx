@@ -1,197 +1,82 @@
-// "use client";
+"use client";
 
-// import { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
+export default function Clients() {
+  const clients = [
+    "/clients/client1.jpg",
+    "/clients/client2.jpg",
+    "/clients/client3.jpg",
+    "/clients/client4.jpg",
+    "/clients/client5.jpg",
+    "/clients/client6.jpg",
+    "/clients/client7.jpg",
+    "/clients/client8.jpg",
+    "/clients/client9.jpg",
+    "/clients/client10.jpg",
+    "/clients/client11.jpg",
+    "/clients/client12.jpg",
+  ];
 
-// const logos = [
-//   "/client-logos/1.png",
-//   "/client-logos/2.png",
-//   "/client-logos/3.png",
-//   "/client-logos/4.png",
-//   "/client-logos/5.png",
-//   "/client-logos/6.png",
-//   "/client-logos/7.png",
-//   "/client-logos/8.png",
-//   "/client-logos/9.png",
-//   "/client-logos/10.png",
-//   "/client-logos/11.png",
-//   "/client-logos/12.png",
-//   "/client-logos/13.png",
-//   "/client-logos/14.png",
-//   "/client-logos/15.png",
-//   "/client-logos/16.png",
-//   "/client-logos/17.png",
-//   "/client-logos/18.png",
-//   "/client-logos/19.png",
-//   "/client-logos/20.png",
-//   "/client-logos/21.png",
-//   "/client-logos/22.png",
-//   "/client-logos/23.png",
-//   "/client-logos/24.png",
-//   "/client-logos/25.png",
-// ];
+  const positions = [
+    "top-16 left-10",
+    "top-0 left-48",
+    "top-20 left-80",
+    "top-4 right-48",
+    "top-16 right-10",
 
+    "top-56 left-20",
+    "top-60 right-24",
 
-// const positions = [
-//   { x: 0, y: 0 }, 
-//   { x: -25, y: -20 },
-//   { x: 25, y: -20 },
-//   { x: -30, y: 15 }, 
-//   { x: 30, y: 15 }, 
-//   { x: -15, y: -10 },
-//   { x: 15, y: 10 },
-//   { x: 0, y: -25 },
-//   { x: -35, y: 0 }, 
-//   { x: 35, y: 0 }, 
-//   { x: -20, y: 20 }, 
-//   { x: 20, y: -15 }, 
-//   { x: 10, y: -20 }, 
-//   { x: -10, y: 18 }, 
-//   { x: 0, y: 15 }, 
-// ];
+    "bottom-32 left-4",
+    "bottom-20 left-56",
+    "bottom-24 right-56",
+    "bottom-16 right-6",
+    "bottom-40 right-20",
+  ];
 
-// export default function Clients() {
-//   const containerRef = useRef(null);
-//   const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
+  return (
+    <section className="relative py-62 bg-transparent overflow-hidden mt-22">
+      {/* Subtle background pattern */}
+      {/* <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="w-full h-full bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:28px_28px]" />
+      </div> */}
 
-//   useEffect(() => {
-//     const ctx = gsap.context(() => {
-//       logoRefs.current.forEach((logo, index) => {
-//         const pos = positions[index % positions.length];
+      {/* Floating-style static cards */}
+      <div className="absolute inset-0 max-w-7xl mx-auto">
+        {clients.map((img, i) => (
+          <div
+            key={i}
+            className={`absolute ${positions[i]} w-24 h-28 rounded-2xl overflow-hidden bg-white shadow-md`}
+          >
+            <img
+              src={img}
+              alt="client"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
 
-//         gsap.set(logo, {
-//           z: -2000,
-//           x: pos.x + "%",
-//           y: pos.y + "%",
-//           scale: 0.1,
-//           opacity: 0,
-//           filter: "blur(8px)",
-//         });
-//       });
+      {/* Center Content */}
+      <div className="relative z-10 max-w-2xl mx-auto text-center px-6">
+        <span className="px-4 py-1 rounded-full bg-white shadow-sm text-sm font-medium text-gray-600">
+          Testimonials
+        </span>
 
-//       const masterTimeline = gsap.timeline({
-//         repeat: -1,
-//       });
+        <h2 className="mt-6 text-5xl font-semibold text-gray-100 leading-tight">
+          Trusted by leaders
+          <br />
+          <span className="text-gray-200">from various industries</span>
+        </h2>
 
-//       logoRefs.current.forEach((logo, index) => {
-//         const createSpawnPosition = () => ({
-//           x: gsap.utils.random(-40, 40),
-//           y: gsap.utils.random(-30, 30),
-//         });
+        <p className="mt-6 text-gray-500 text-lg">
+          Learn why professionals trust our solutions to complete their customer
+          journeys.
+        </p>
 
-//         const timeline = gsap.timeline({
-//           repeat: -1,
-//           repeatRefresh: true,
-//         });
-
-//         timeline
-//           .fromTo(
-//             logo,
-//             () => {
-//               const pos = createSpawnPosition();
-
-//               return {
-//                 z: -2000,
-//                 x: pos.x + "%",
-//                 y: pos.y + "%",
-//                 scale: 0.1,
-//                 opacity: 0,
-//                 filter: "blur(8px)",
-//               };
-//             },
-//             {
-//               z: -1000,
-//               scale: 0.35,
-//               opacity: 0.4,
-//               filter: "blur(4px)",
-//               duration: 1.5,
-//               ease: "none",
-//             },
-//           )
-
-//           .to(logo, {
-//             z: 0,
-//             scale: 1,
-//             opacity: 1,
-//             filter: "blur(0px)",
-//             duration: 2,
-//             ease: "none",
-//           })
-
-//           .to(logo, {
-//             duration: 0.8,
-//           })
-
-//           .to(logo, {
-//             z: 1500,
-//             x: () => gsap.utils.random(-60, 60) + "%",
-//             y: () => gsap.utils.random(-40, 40) + "%",
-//             scale: 3,
-//             opacity: 0,
-//             filter: "blur(12px)",
-//             duration: 1.5,
-//             ease: "none",
-//           });
-
-//         masterTimeline.add(timeline, index * 0.6);
-//       });
-//     }, containerRef);
-
-//     return () => ctx.revert();
-//   }, []);
-
-//   return (
-//     <section className="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center">
-//       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-50 pointer-events-none" />
-
-//       <h2 className="absolute z-20 text-white text-4xl md:text-6xl font-serif text-center leading-tight px-4">
-//         75+ brands <br /> already said "Wow".
-//       </h2>
-
-
-//       <div
-//         ref={containerRef}
-//         className="absolute inset-0 flex items-center justify-center"
-//         style={{
-//           perspective: "1000px",
-//           perspectiveOrigin: "50% 50%",
-//         }}
-//       >
-
-//         <div
-//           className="relative w-full h-full flex items-center justify-center"
-//           style={{
-//             transformStyle: "preserve-3d",
-//           }}
-//         >
-
-//           {logos.map((logo, index) => (
-//             <div
-//               key={index}
-//               ref={(el) => {
-//                 logoRefs.current[index] = el;
-//               }}
-//               className="absolute"
-//               style={{
-//                 transformStyle: "preserve-3d",
-//                 backfaceVisibility: "hidden",
-//               }}
-//             >
-//               <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
-
-//                 <div className="absolute inset-0 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.9)] flex items-center justify-center">
-
-//                   <img
-//                     src={logo}
-//                     alt={`Client logo ${index + 1}`}
-//                     className="w-[60%] h-[60%] object-contain brightness-110 relative z-10"
-//                   />
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
+        {/* <button className="mt-8 px-6 py-3 bg-black text-white rounded-full font-medium hover:scale-105 transition">
+          Read Success Stories →
+        </button> */}
+      </div>
+    </section>
+  );
+}
