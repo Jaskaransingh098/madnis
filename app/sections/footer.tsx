@@ -34,7 +34,7 @@ export default function Footer() {
       </div>
 
       {/* 3D BRAND ZONE */}
-      <div className="relative h-[620px] mt-20 overflow-hidden">
+      <div className="relative h-[635px] mt-20 overflow-hidden">
         <FooterModel />
 
         {/* BRAND TEXT */}

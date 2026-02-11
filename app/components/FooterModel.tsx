@@ -18,7 +18,7 @@ function Blob() {
   });
 
   return (
-    <mesh ref={mesh} scale={1.55}>
+    <mesh ref={mesh} scale={1.25}>
       <torusKnotGeometry args={[1, 0.4, 200, 32]} />
       <MeshDistortMaterial
         color="#bfa24a" // gold tone

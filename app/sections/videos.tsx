@@ -83,7 +83,7 @@ export default function OurWork() {
                         >
                             <video
                                 src={videos[index]}
-                                autoPlay
+                                // autoPlay
                                 muted
                                 loop
                                 playsInline

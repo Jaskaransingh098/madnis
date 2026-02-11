@@ -1,6 +1,7 @@
 "use client";
 
 import SmoothScroll from "./components/SmoothScroll";
+import SmoothCursor from "./components/SmoothCursor";
 import Hero from "./sections/hero";
 import BTS from "./sections/bts";
 import Services from "./sections/services";
@@ -9,6 +10,7 @@ import CTA from "./sections/cta";
 import Process from "./sections/process";
 import OurWork from "./sections/videos";
 // import Clients from "./sections/clients";
+import WorkVideos from "./sections/workVideos";
 import Footer from "./sections/footer";
 import TestimonialsSection from "./sections/testimonial";
 import CompaniesCapsuleSection from "./sections/companiesWork";
@@ -17,6 +19,13 @@ export default function Home() {
   return (
     <>
       <SmoothScroll />
+      <SmoothCursor
+        size={30}
+        color="white"
+        rotateOnMove={true}
+        scaleOnClick={true}
+        glowEffect={true}
+      />
 
       <main>
         <Navbar />
@@ -24,13 +33,14 @@ export default function Home() {
         {/* <Clients /> */}
         <CompaniesCapsuleSection />
         <OurWork />
-        <Process/>
+        <WorkVideos />
+        <Process />
         <Services />
         <BTS />
-        <TestimonialsSection/>
+        <TestimonialsSection />
         <CTA />
         <Footer />
       </main>
     </>
-  )
+  );
 }
