@@ -160,7 +160,7 @@ function VideoCard({
         src={src}
         muted
         loop
-        // autoPlay
+        autoPlay
         playsInline
         className="w-full h-full object-cover"
       />

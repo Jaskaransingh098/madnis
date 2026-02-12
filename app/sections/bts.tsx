@@ -156,7 +156,7 @@ function VideoCard({
     >
       <video
         src={src}
-        // autoPlay
+        autoPlay
         muted
         loop
         playsInline

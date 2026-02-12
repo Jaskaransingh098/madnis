@@ -22,12 +22,72 @@ const testimonials: Testimonial[] = [
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/1.jpg",
+    image: "/testimonials/11.jpg",
   },
   {
     type: "audio",
     name: "Bruce Murphy",
     audio: "/testimonials/audio1.mp3",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/12.jpg",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/13.jpg",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/14.jpg",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/15.jpg",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/eight.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/fift.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/first.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/fourth.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/second.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/seven.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/six.png",
+  },
+  {
+    type: "image",
+    name: "Megan Walters",
+    image: "/testimonials/third.png",
   },
   {
     type: "text",
@@ -80,7 +140,7 @@ export default function TestimonialsSection() {
   }, []);
 
   const renderCard = (item: Testimonial, i: number) => (
-    <div key={i} className="bg-[#111] rounded-xl p-5 shadow-lg mb-6">
+    <div key={i} className="bg-[#111] rounded-xl p-2 shadow-lg mb-6">
       {item.type === "text" && (
         <>
           <p className="text-sm text-gray-300 mb-4">“{item.content}”</p>
@@ -90,12 +150,13 @@ export default function TestimonialsSection() {
 
       {item.type === "image" && item.image && (
         <>
-          <div className="relative w-full h-40 rounded-lg overflow-hidden mb-3">
+          <div className="w-full rounded-lg overflow-hidden mb-3">
             <Image
               src={item.image}
               alt={item.name}
-              fill
-              className="object-cover"
+              width={500}
+              height={500}
+              className="w-full h-auto object-cover rounded-lg"
             />
           </div>
           <span className="text-xs text-gray-400">— {item.name}</span>
