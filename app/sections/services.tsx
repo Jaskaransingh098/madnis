@@ -13,22 +13,32 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: "Creative Direction",
+    title: "Design & Branding",
     items: ["Creative Platform", "Campaign Concepts", "Design Ops"],
     image: "/client-logos/4.png",
   },
   {
-    title: "Film & Motion Design",
+    title: "Development & Web Design",
     items: ["Motion Graphics", "Brand Films", "Product Videos"],
     image: "/client-logos/3.png",
   },
   {
-    title: "Web & Digital Experience",
+    title: "Video Production Services",
     items: ["UI / UX", "Development", "Animations"],
     image: "/client-logos/2.png",
   },
   {
-    title: "Brand Strategy",
+    title: "Animation",
+    items: ["Identity", "Messaging", "Guidelines"],
+    image: "/client-logos/1.png",
+  },
+  {
+    title: "Audio Engineering",
+    items: ["Identity", "Messaging", "Guidelines"],
+    image: "/client-logos/1.png",
+  },
+  {
+    title: "Photography Services",
     items: ["Identity", "Messaging", "Guidelines"],
     image: "/client-logos/1.png",
   },

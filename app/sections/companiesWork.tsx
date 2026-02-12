@@ -95,7 +95,7 @@ export default function CompaniesGallery() {
             {/* Header */}
             <div className="absolute top- left-0 right-0 z-20 flex justify-between items-center px-12">
                 <div className="text-2xl">✱</div>
-                <h1 className="text-sm tracking-[0.3em] font-light">ART GALLERY</h1>
+                <h1 className="text-sm tracking-[0.3em] font-light">COMPANY GALLERY</h1>
                 <div className="w-8 h-0.5 bg-white"></div>
             </div>
 

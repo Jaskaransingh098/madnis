@@ -2,22 +2,42 @@
 
 export default function Clients() {
   const clients = [
-    "/clients/client1.jpg",
-    "/clients/client2.jpg",
-    "/clients/client3.jpg",
-    "/clients/client4.jpg",
-    "/clients/client5.jpg",
-    "/clients/client6.jpg",
-    "/clients/client7.jpg",
-    "/clients/client8.jpg",
-    "/clients/client9.jpg",
-    "/clients/client10.jpg",
-    "/clients/client11.jpg",
-    "/clients/client12.jpg",
+    "/client-logos/1.png",
+    "/client-logos/2.png",
+    "/client-logos/3.png",
+    "/client-logos/4.png",
+    "/client-logos/5.png",
+    "/client-logos/6.png",
+    "/client-logos/7.png",
+    "/client-logos/8.png",
+    "/client-logos/9.png",
+    "/client-logos/10.png",
+    "/client-logos/11.png",
+    "/client-logos/12.png",
+    "/client-logos/13.png",
+    "/client-logos/14.png",
+    "/client-logos/15.png",
+    "/client-logos/16.png",
+    "/client-logos/17.png",
+    "/client-logos/18.png",
+    "/client-logos/19.png",
+    "/client-logos/20.png",
+    "/client-logos/21.png",
+    "/client-logos/22.png",
+    "/client-logos/23.png",
+    "/client-logos/24.png",
+    "/client-logos/25.png",
+    "/client-logos/26.png",
+    "/client-logos/27.png",
+    "/client-logos/28.png",
+    "/client-logos/29.png",
+    "/client-logos/30.png",
+    "/client-logos/31.png",
+    "/client-logos/32.png",
   ];
 
   const positions = [
-    "top-16 left-10",
+    "top-16 left-20",
     "top-0 left-48",
     "top-20 left-80",
     "top-4 right-48",
@@ -31,6 +51,26 @@ export default function Clients() {
     "bottom-24 right-56",
     "bottom-16 right-6",
     "bottom-40 right-20",
+    "top-36 left-126",
+    "bottom-70 right-46",
+    "top-30 right-106",
+    "top-10 left-160",
+    "bottom-40 left-120",
+    "bottom-30 right-110",
+    "top-50 right-70",
+    "bottom-40 left-30",
+    "bottom-70 left-50",
+    "bottom-65 left-10",
+    "top-50 left-70",
+    "top-50 left-0",
+    "top-40 left-50",
+    "bottom-30 left-90",
+    "bottom-20 left-150",
+    "bottom-10 right-80",
+    "bottom-40 right-90",
+    "top-40 right-50",
+    "top-15 right-80",
+    "bottom-70 right-10",
   ];
 
   return (
@@ -59,23 +99,18 @@ export default function Clients() {
       {/* Center Content */}
       <div className="relative z-10 max-w-2xl mx-auto text-center px-6">
         <span className="px-4 py-1 rounded-full bg-white shadow-sm text-sm font-medium text-gray-600">
-          Testimonials
+          Our Clients
         </span>
 
         <h2 className="mt-6 text-5xl font-semibold text-gray-100 leading-tight">
-          Trusted by leaders
-          <br />
-          <span className="text-gray-200">from various industries</span>
+          Brands That <span className="text-[#D4AF37]">Trust Our Craft</span>
         </h2>
 
         <p className="mt-6 text-gray-500 text-lg">
-          Learn why professionals trust our solutions to complete their customer
-          journeys.
+          We partner with visionary brands across industries to create powerful
+          visual experiences that elevate presence, strengthen identity, and
+          deliver measurable impact.
         </p>
-
-        {/* <button className="mt-8 px-6 py-3 bg-black text-white rounded-full font-medium hover:scale-105 transition">
-          Read Success Stories →
-        </button> */}
       </div>
     </section>
   );
