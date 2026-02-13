@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 
 const videos = [
   "/horizontal/v1.mp4",
@@ -19,13 +20,15 @@ const videos = [
 
 export default function WorkVideos() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const rotationTweenRef = useRef<gsap.core.Tween | null>(null);
+  const glowTweenRef = useRef<gsap.core.Tween | null>(null);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
   const carouselItems = [...videos, ...videos];
 
   const cardWidth = 620;
   const totalCards = carouselItems.length;
   const gapFactor = 0.8;
-  //   const radius = (cardWidth * gapFactor) / 2 / Math.tan(Math.PI / totalCards);
   const radius =
     ((cardWidth * gapFactor) / 2 / Math.tan(Math.PI / totalCards)) * 0.95;
 
@@ -35,8 +38,7 @@ export default function WorkVideos() {
 
     const rotationObj = { value: 0 };
 
-    // Rotate cylinder
-    gsap.to(rotationObj, {
+    rotationTweenRef.current = gsap.to(rotationObj, {
       value: 360,
       duration: 45,
       ease: "none",
@@ -54,19 +56,13 @@ export default function WorkVideos() {
         Array.from(cards).forEach((card, index) => {
           const baseAngle = (360 / totalCards) * index;
 
-          // Calculate card's current visible angle
           let relativeAngle = (baseAngle + currentRotation) % 360;
 
           if (relativeAngle > 180) {
             relativeAngle = 360 - relativeAngle;
           }
 
-          const scale = gsap.utils.mapRange(
-            0,
-            180,
-            0.65, // center small
-            1.1, // sides big
-          )(relativeAngle);
+          const scale = gsap.utils.mapRange(0, 180, 0.65, 1.1)(relativeAngle);
 
           gsap.set(card, {
             scale,
@@ -75,23 +71,40 @@ export default function WorkVideos() {
       },
     });
 
-    gsap.to("#goldGlow", {
+    glowTweenRef.current = gsap.to("#goldGlow", {
       scale: 2.1,
       opacity: 2,
+      repeat: -1,
       yoyo: true,
+      duration: 3.6,
+      ease: "sine.inOut",
     });
-  }, []);
+
+    return () => {
+      rotationTweenRef.current?.kill();
+      glowTweenRef.current?.kill();
+    };
+  }, [radius, totalCards]);
+
+  useEffect(() => {
+    if (playingVideoId) {
+      rotationTweenRef.current?.pause();
+      glowTweenRef.current?.pause();
+      return;
+    }
+
+    rotationTweenRef.current?.play();
+    glowTweenRef.current?.play();
+  }, [playingVideoId]);
 
   return (
-    <section className="bg-black text-white py-32 overflow-hidden flex flex-col items-center">
-      {/* Heading */}
-      <div className="text-center mb-20 max-w-3xl">
-        <h2 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
-          Where Vision Becomes{" "}
-          <span className="text-[#D4AF37]">Cinematic Reality</span>
+    <section className="flex flex-col items-center overflow-hidden bg-black py-32 text-white">
+      <div className="mb-20 max-w-3xl text-center">
+        <h2 className="mb-6 text-5xl font-semibold leading-tight md:text-6xl">
+          Where Vision Becomes <span className="text-[#D4AF37]">Cinematic Reality</span>
         </h2>
 
-        <p className="text-gray-400 text-lg leading-relaxed">
+        <p className="text-lg leading-relaxed text-gray-400">
           At Madnis Media, we craft visually immersive video experiences
           designed to elevate your brand presence. Every frame is engineered to
           capture attention, ignite emotion, and leave a lasting impression that
@@ -99,12 +112,10 @@ export default function WorkVideos() {
         </p>
       </div>
 
-
-      <div className="relative w-full h-[420px] flex justify-center items-center [perspective:1400px]">
+      <div className="relative flex h-[420px] w-full items-center justify-center [perspective:1400px]">
         <div
           id="goldGlow"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-               w-[550px] h-[220px] rounded-full opacity-70"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[220px] w-[550px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70"
           style={{
             background:
               "radial-gradient(circle, rgba(212,175,55,0.45) 0%, rgba(212,175,55,0.18) 40%, transparent 75%)",
@@ -126,7 +137,15 @@ export default function WorkVideos() {
             const angle = (360 / totalCards) * i;
 
             return (
-              <VideoCard key={i} src={src} angle={angle} radius={radius} />
+              <VideoCard
+                key={`${src}-${i}`}
+                src={src}
+                angle={angle}
+                radius={radius}
+                isActive={playingVideoId === `${src}-${i}`}
+                onPlay={() => setPlayingVideoId(`${src}-${i}`)}
+                onStop={() => setPlayingVideoId((current) => (current === `${src}-${i}` ? null : current))}
+              />
             );
           })}
         </div>
@@ -139,14 +158,67 @@ function VideoCard({
   src,
   angle,
   radius,
+  isActive,
+  onPlay,
+  onStop,
 }: {
   src: string;
   angle: number;
   radius: number;
+  isActive: boolean;
+  onPlay: () => void;
+  onStop: () => void;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    if (!isActive) {
+      const video = videoRef.current;
+      if (!video) return;
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [isActive]);
+
+  const togglePlay = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      onPlay();
+      await video.play().catch(() => undefined);
+      setIsPlaying(!video.paused);
+      return;
+    }
+
+    video.pause();
+    setIsPlaying(false);
+    onStop();
+  };
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
+
+  const closeVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+    setIsPlaying(false);
+    onStop();
+  };
+
   return (
     <div
-      className="absolute top-0 left-0 w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+      className="absolute left-0 top-0 w-full aspect-video overflow-hidden rounded-3xl border border-white/10 shadow-2xl"
       style={{
         transform: `
   rotateY(${angle}deg)
@@ -156,14 +228,50 @@ function VideoCard({
         backfaceVisibility: "hidden",
       }}
     >
-      <video
-        src={src}
-        muted
-        loop
-        autoPlay
-        playsInline
-        className="w-full h-full object-cover"
-      />
+      <div className="group relative h-full w-full">
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          preload="metadata"
+          playsInline
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          className="h-full w-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20 opacity-90 transition group-hover:opacity-100" />
+
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+          <button
+            onClick={togglePlay}
+            className="rounded-full border border-white/30 bg-black/45 p-2 text-white backdrop-blur"
+            aria-label={isPlaying ? "Pause video" : "Play video"}
+          >
+            {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+          </button>
+
+          {isPlaying && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleMute}
+                className="rounded-full border border-white/30 bg-black/45 p-2 text-white backdrop-blur"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+
+              <button
+                onClick={closeVideo}
+                className="rounded-full border border-white/30 bg-black/45 p-2 text-white backdrop-blur"
+                aria-label="Close video"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
