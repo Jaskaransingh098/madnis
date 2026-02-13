@@ -5,8 +5,6 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 
-
-
 const videos = [
   "/bts/compressed_1.mp4",
   "/bts/compressed_2.MOV",
@@ -22,8 +20,6 @@ const videos = [
   // "/bts/compressed_12.mp4",
 ];
 
-
-
 const heights = [
   "h-[160px]",
   "h-[200px]",
@@ -32,7 +28,6 @@ const heights = [
   "h-[320px]",
   "h-[360px]",
 ];
-
 
 const generateRandomHeights = (count: number) => {
   return Array.from({ length: count }, () => {
@@ -45,11 +40,7 @@ export default function BtsMasonry() {
   const animationRef = useRef<gsap.core.Tween | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
-
-  const randomHeights = useMemo(
-    () => generateRandomHeights(videos.length),
-    []
-  );
+  const randomHeights = useMemo(() => generateRandomHeights(videos.length), []);
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -90,11 +81,9 @@ export default function BtsMasonry() {
 
         <div className="overflow-hidden">
           <div ref={scrollRef} className="flex gap-6 w-max">
-
             {/* Duplicate for infinite scroll */}
             {[...Array(2)].map((_, dup) => (
               <div key={dup} className="flex gap-6">
-
                 {splitIntoColumns(videos, randomHeights).map(
                   (column, colIndex) => (
                     <div
@@ -112,12 +101,10 @@ export default function BtsMasonry() {
                         />
                       ))}
                     </div>
-                  )
+                  ),
                 )}
-
               </div>
             ))}
-
           </div>
         </div>
       </div>
@@ -129,16 +116,14 @@ export default function BtsMasonry() {
   );
 }
 
-
-
 function splitIntoColumns(
   videos: string[],
   heights: string[],
-  columnCount = 4
+  columnCount = 4,
 ): Array<Array<{ src: string; height: string }>> {
   const columns: Array<Array<{ src: string; height: string }>> = Array.from(
     { length: columnCount },
-    () => []
+    () => [],
   );
 
   videos.forEach((video, index) => {
@@ -150,9 +135,6 @@ function splitIntoColumns(
 
   return columns;
 }
-
-
-
 function VideoCard({
   src,
   height,
@@ -166,22 +148,30 @@ function VideoCard({
   play: () => void;
   onOpen: (src: string) => void;
 }) {
+  // Convert video path to poster path automatically
+  const poster = src.replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
+
   return (
     <motion.div
       onMouseEnter={pause}
       onMouseLeave={play}
       onClick={() => onOpen(src)}
       whileHover={{ scale: 1.05 }}
-      className={`rounded-2xl overflow-hidden shadow-xl ${height} cursor-pointer`}
+      className={`group relative rounded-2xl overflow-hidden shadow-xl ${height} cursor-pointer`}
     >
-      <video
-        src={src}
-        autoPlay
-        muted
-        loop
-        playsInline
+      <img
+        src={poster}
+        alt="Video poster"
+        loading="lazy"
         className="w-full h-full object-cover"
       />
+
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+        <Play
+          size={36}
+          className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
+        />
+      </div>
     </motion.div>
   );
 }
