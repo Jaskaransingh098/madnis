@@ -1,40 +1,11 @@
 "use client";
 
 export default function Clients({ id }: { id?: string }) {
-  const clients = [
-    "/client-logos/1.png",
-    "/client-logos/2.png",
-    "/client-logos/3.png",
-    "/client-logos/4.png",
-    "/client-logos/5.png",
-    "/client-logos/6.png",
-    "/client-logos/7.png",
-    "/client-logos/8.png",
-    "/client-logos/9.png",
-    "/client-logos/10.png",
-    "/client-logos/11.png",
-    "/client-logos/12.png",
-    "/client-logos/13.png",
-    "/client-logos/14.png",
-    "/client-logos/15.png",
-    "/client-logos/16.png",
-    "/client-logos/17.png",
-    "/client-logos/18.png",
-    "/client-logos/19.png",
-    "/client-logos/20.png",
-    "/client-logos/21.png",
-    "/client-logos/22.png",
-    "/client-logos/23.png",
-    "/client-logos/24.png",
-    "/client-logos/25.png",
-    "/client-logos/26.png",
-    "/client-logos/27.png",
-    "/client-logos/28.png",
-    "/client-logos/29.png",
-    "/client-logos/30.png",
-    "/client-logos/31.png",
-    "/client-logos/32.png",
-  ];
+
+  const clients = Array.from(
+    { length: 32 },
+    (_, i) => `/client-logos/${i + 1}.webp`,
+  );
 
   const positions = [
     "top-16 left-20",
@@ -74,7 +45,10 @@ export default function Clients({ id }: { id?: string }) {
   ];
 
   return (
-    <section id={id} className="relative py-62 bg-transparent overflow-hidden mt-22">
+    <section
+      id={id}
+      className="relative py-62 bg-transparent overflow-hidden mt-22"
+    >
       {/* Subtle background pattern */}
       {/* <div className="absolute inset-0 opacity-40 pointer-events-none">
         <div className="w-full h-full bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:28px_28px]" />

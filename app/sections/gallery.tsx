@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import gsap from "gsap";
 
 const allImages = Array.from(
   { length: 25 },
@@ -12,6 +13,8 @@ const BATCH_SIZE = 8;
 
 export default function Gallery({ id }: { id?: string }) {
   const [batchIndex, setBatchIndex] = useState(0);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const totalBatches = Math.ceil(allImages.length / BATCH_SIZE);
 
@@ -20,16 +23,40 @@ export default function Gallery({ id }: { id?: string }) {
     return allImages.slice(start, start + BATCH_SIZE);
   }, [batchIndex]);
 
+  // Animate on batch change
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
+    const fromX = direction === "right" ? 200 : -200;
+
+    gsap.fromTo(
+      el,
+      { opacity: 0, x: fromX },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1.3,
+        ease: "power3.out",
+      },
+    );
+  }, [batchIndex, direction]);
+
   const goLeft = () => {
+    setDirection("left");
     setBatchIndex((prev) => (prev === 0 ? totalBatches - 1 : prev - 1));
   };
 
   const goRight = () => {
+    setDirection("right");
     setBatchIndex((prev) => (prev === totalBatches - 1 ? 0 : prev + 1));
   };
 
   return (
-    <section id={id} className="relative w-full bg-transparent text-white py-28 overflow-hidden">
+    <section
+      id={id}
+      className="relative w-full bg-transparent text-white py-28 overflow-hidden"
+    >
       {/* Heading */}
       <div className="text-center mb-20 px-4">
         <h1 className="text-5xl md:text-6xl font-serif font-medium leading-tight">
@@ -57,14 +84,17 @@ export default function Gallery({ id }: { id?: string }) {
       </button>
 
       {/* Collage Layout */}
-      <div className="max-w-7xl mx-auto grid grid-cols-4 gap-6 px-6 transition-opacity duration-500">
+      <div
+        ref={gridRef}
+        className="max-w-7xl mx-auto grid grid-cols-4 gap-6 px-6"
+      >
         {visibleImages.map((src, index) => {
           const isHero = index === 0;
 
           return (
             <div
               key={src}
-              className={`relative overflow-hidden rounded-xl shadow-2xl border border-white/10 transition-all duration-500
+              className={`relative overflow-hidden rounded-xl shadow-2xl border border-white/10
                 ${isHero ? "col-span-2 row-span-2 h-[520px]" : ""}
                 ${
                   !isHero &&
