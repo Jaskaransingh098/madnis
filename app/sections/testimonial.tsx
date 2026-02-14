@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/11.jpg",
+    image: "/testimonials/11-opt.jpg",
   },
   {
     type: "audio",
@@ -32,62 +32,62 @@ const testimonials: Testimonial[] = [
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/12.jpg",
+    image: "/testimonials/12-opt.jpg",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/13.jpg",
+    image: "/testimonials/13-opt.jpg",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/14.jpg",
+    image: "/testimonials/14-opt.jpg",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/15.jpg",
+    image: "/testimonials/15-opt.jpg",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/eight.png",
+    image: "/testimonials/eight.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/fift.png",
+    image: "/testimonials/fift.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/first.png",
+    image: "/testimonials/first.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/fourth.png",
+    image: "/testimonials/fourth.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/second.png",
+    image: "/testimonials/second.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/seven.png",
+    image: "/testimonials/seven.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/six.png",
+    image: "/testimonials/six.webp",
   },
   {
     type: "image",
     name: "Megan Walters",
-    image: "/testimonials/third.png",
+    image: "/testimonials/third.webp",
   },
   {
     type: "text",
@@ -98,7 +98,7 @@ const testimonials: Testimonial[] = [
   {
     type: "image",
     name: "Andrew Cook",
-    image: "/testimonials/2.jpg",
+    image: "/testimonials/2-opt.jpg",
   },
   {
     type: "audio",

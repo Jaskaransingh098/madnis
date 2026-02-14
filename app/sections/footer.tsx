@@ -13,7 +13,14 @@ export default function Footer() {
           That Hits A Different?
         </h2>
 
-        <button className="mt-8 px-6 py-3 border border-white/30 rounded-full text-sm hover:border-white transition">
+        <button
+          onClick={() => {
+            document
+              .getElementById("contact")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="mt-8 px-6 py-3 border border-white/30 rounded-full text-sm hover:border-white transition"
+        >
           let’s connect →
         </button>
       </div>

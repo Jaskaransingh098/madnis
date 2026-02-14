@@ -2,6 +2,7 @@
 
 import SmoothScroll from "./components/SmoothScroll";
 import SmoothCursor from "./components/SmoothCursor";
+import SectionReveal from "./components/SectionReveal";
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import Hero from "./sections/hero";
 import BTS from "./sections/bts";
@@ -33,17 +34,50 @@ export default function Home() {
       <Navbar />
 
       <main className="z-10">
-        <Hero id="hero" />
-        <Gallery id="gallery" />
-        <CompaniesCapsuleSection id="companies" />
-        <OurWork id="work" />
-        <WorkVideos id="videos" />
-        <Process id="process" />
-        <Services id="services" />
-        <BTS id="bts" />
-        <Clients id="clients" />
-        <TestimonialsSection id="testimonials" />
-        <CTA id="contact" />
+        <SectionReveal>
+          <Hero id="hero" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <Gallery id="gallery" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <CompaniesCapsuleSection id="companies" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <OurWork id="work" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <WorkVideos id="videos" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <Process id="process" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <Services id="services" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <BTS id="bts" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <Clients id="clients" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <TestimonialsSection id="testimonials" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <CTA id="contact" />
+        </SectionReveal>
+
         <Footer />
       </main>
     </>

@@ -29,10 +29,7 @@ export default function Hero({ id }: { id?: string }) {
         poster="/hero-section/compressed_hero-section-video.webp"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source
-          src="/hero-section/hero-optimized.mp4"
-          type="video/mp4"
-        />
+        <source src="/hero-section/hero-optimized.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay */}
@@ -58,7 +55,14 @@ export default function Hero({ id }: { id?: string }) {
 
       {/* CTA */}
       <div className="absolute bottom-50 left-[5vw] z-10">
-        <button className="px-8 py-3 rounded-full border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition">
+        <button
+          onClick={() => {
+            document
+              .getElementById("contact")
+              ?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="px-8 py-3 rounded-full border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition"
+        >
           Start Your Madnis journey
         </button>
       </div>
