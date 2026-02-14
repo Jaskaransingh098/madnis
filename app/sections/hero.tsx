@@ -8,9 +8,9 @@ const Bitcount = Bitcount_Grid_Double({
   weight: "300",
 });
 
-export default function Hero() {
+export default function Hero({ id }: { id?: string }) {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section id={id} className="relative w-full h-screen overflow-hidden">
       {/* Poster Image (Instant load) */}
       <img
         src="/hero-section/compressed_hero-section-video.webp"

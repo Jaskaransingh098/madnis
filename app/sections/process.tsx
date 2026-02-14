@@ -18,7 +18,7 @@ const ImageCard = ({ src }: { src: string }) => (
   </div>
 );
 
-export default function Process() {
+export default function Process({ id }: { id?: string }) {
   const data = [
     {
       title: "Idea Alchemy",
@@ -121,7 +121,7 @@ export default function Process() {
   ];
 
   return (
-    <section className="relative w-full bg-black py-24">
+    <section id={id} className="relative w-full bg-black py-24">
       <div className="text-center mb-12 px-6">
         <h2 className="text-3xl md:text-8xl font-extrabold text-[#D4AF37]">
           How Madnis Works Its Magic

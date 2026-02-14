@@ -13,11 +13,11 @@ const interests = [
   "Other",
 ];
 
-export default function CTA() {
+export default function CTA({ id }: { id?: string }) {
   const [selected, setSelected] = useState("Product info / Support");
 
   return (
-    <div className="flex flex-col overflow-hidden">
+    <div id={id} className="flex flex-col overflow-hidden">
       <ContainerScroll
         titleComponent={
           <h1 className="text-white font-semibold">

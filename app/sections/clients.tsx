@@ -1,6 +1,6 @@
 "use client";
 
-export default function Clients() {
+export default function Clients({ id }: { id?: string }) {
   const clients = [
     "/client-logos/1.png",
     "/client-logos/2.png",
@@ -74,7 +74,7 @@ export default function Clients() {
   ];
 
   return (
-    <section className="relative py-62 bg-transparent overflow-hidden mt-22">
+    <section id={id} className="relative py-62 bg-transparent overflow-hidden mt-22">
       {/* Subtle background pattern */}
       {/* <div className="absolute inset-0 opacity-40 pointer-events-none">
         <div className="w-full h-full bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:28px_28px]" />

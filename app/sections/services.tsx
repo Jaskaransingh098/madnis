@@ -44,7 +44,7 @@ const services: Service[] = [
   },
 ];
 
-export default function ServicesAccordion() {
+export default function ServicesAccordion({ id }: { id?: string }) {
   const [active, setActive] = useState<number | null>(0);
   const [hovered, setHovered] = useState<number | null>(null);
 
@@ -90,6 +90,7 @@ export default function ServicesAccordion() {
 
   return (
     <section
+      id={id}
       ref={containerRef}
       className="relative bg-transparent text-white py-24 px-6 md:px-16"
       onMouseLeave={hidePreview}

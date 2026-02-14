@@ -30,19 +30,20 @@ export default function Home() {
       />
       <HeroGeometric />
 
+      <Navbar />
+
       <main className="z-10">
-        <Navbar />
-        <Hero />
-        <Gallery/>
-        <CompaniesCapsuleSection />
-        <OurWork />
-        <WorkVideos />
-        <Process />
-        <Services />
-        <BTS />
-        <Clients />
-        <TestimonialsSection />
-        <CTA />
+        <Hero id="hero" />
+        <Gallery id="gallery" />
+        <CompaniesCapsuleSection id="companies" />
+        <OurWork id="work" />
+        <WorkVideos id="videos" />
+        <Process id="process" />
+        <Services id="services" />
+        <BTS id="bts" />
+        <Clients id="clients" />
+        <TestimonialsSection id="testimonials" />
+        <CTA id="contact" />
         <Footer />
       </main>
     </>

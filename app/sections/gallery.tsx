@@ -10,7 +10,7 @@ const allImages = Array.from(
 
 const BATCH_SIZE = 8;
 
-export default function Gallery() {
+export default function Gallery({ id }: { id?: string }) {
   const [batchIndex, setBatchIndex] = useState(0);
 
   const totalBatches = Math.ceil(allImages.length / BATCH_SIZE);
@@ -29,7 +29,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className="relative w-full bg-transparent text-white py-28 overflow-hidden">
+    <section id={id} className="relative w-full bg-transparent text-white py-28 overflow-hidden">
       {/* Heading */}
       <div className="text-center mb-20 px-4">
         <h1 className="text-5xl md:text-6xl font-serif font-medium leading-tight">

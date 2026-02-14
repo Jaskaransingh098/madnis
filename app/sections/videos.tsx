@@ -23,7 +23,7 @@ const videos = [
   "/videos-section/compressed_work17.mp4",
 ];
 
-export default function OurWork() {
+export default function OurWork( { id }: { id?: string }) {
   const [centerIndex, setCenterIndex] = useState(2);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 
@@ -41,7 +41,7 @@ export default function OurWork() {
   };
 
   return (
-    <section className="min-h-screen bg-transparent text-white py-14 overflow-hidden">
+    <section id={id} className="min-h-screen bg-transparent text-white py-14 overflow-hidden">
       {/* Header */}
       <div className="w-[82%] mx-auto mb-20 flex justify-between items-end">
         <p className="text-md text-gray-400 max-w-[460px] leading-relaxed ml-25 pb-25">
@@ -65,18 +65,18 @@ export default function OurWork() {
           const isPlaying = playingIndex === index;
 
           const styleMap = {
-            "-2": "translate-x-[-560px] translate-y-[-70px] rotate-[7deg] scale-[0.98] opacity-80 z-10",
-            "-1": "translate-x-[-280px] translate-y-[-30px] rotate-[-6deg] scale-[1] opacity-85 z-20",
+            "-2": "translate-x-[-560px] translate-y-[-70px] rotate-[7deg] scale-[0.98] opacity-80 z-30",
+            "-1": "translate-x-[-280px] translate-y-[-30px] rotate-[-6deg] scale-[1] opacity-85 z-30",
             "0": "translate-x-0 translate-y-[35px] rotate-0 scale-[1.08] z-30",
-            "1": "translate-x-[300px] translate-y-[-20px] rotate-[-6deg] scale-[0.9] opacity-85 z-20",
-            "2": "translate-x-[560px] translate-y-[-40px] rotate-[2deg] scale-[0.98] opacity-80 z-10",
+            "1": "translate-x-[300px] translate-y-[-20px] rotate-[-6deg] scale-[0.9] opacity-85 z-30",
+            "2": "translate-x-[560px] translate-y-[-40px] rotate-[2deg] scale-[0.98] opacity-80 z-30",
           };
 
           return (
             <div
               key={index}
               onClick={() => {
-                if (offset === 0) setPlayingIndex(index); // Only center card playable
+                if (offset === 0) setPlayingIndex(index);
               }}
               className={`group absolute w-[280px] h-[440px] rounded-[28px] overflow-hidden transition-all duration-700 ease-out shadow-2xl cursor-pointer ${styleMap[offset.toString() as keyof typeof styleMap]}`}
             >
@@ -100,7 +100,7 @@ export default function OurWork() {
 
                   {/* Play Overlay */}
                   {offset === 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                       <Play
                         size={46}
                         className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
