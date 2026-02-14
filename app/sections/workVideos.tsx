@@ -17,7 +17,7 @@ const videos = [
   "/horizontal/v11.mp4",
 ];
 
-export default function WorkVideos() {
+export default function WorkVideos({ id }: { id?: string }) {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const carouselItems = [...videos, ...videos];
@@ -83,7 +83,7 @@ export default function WorkVideos() {
   }, []);
 
   return (
-    <section className="bg-transparent text-white py-32 overflow-hidden flex flex-col items-center">
+    <section id={id} className="bg-transparent text-white py-32 overflow-hidden flex flex-col items-center">
       {/* Heading */}
       <div className="text-center mb-20 max-w-3xl">
         <h2 className="text-5xl md:text-6xl font-semibold mb-6 leading-tight">

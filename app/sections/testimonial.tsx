@@ -107,7 +107,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ id }: { id?: string }) {
   const col1 = useRef<HTMLDivElement>(null);
   const col2 = useRef<HTMLDivElement>(null);
   const col3 = useRef<HTMLDivElement>(null);
@@ -175,7 +175,7 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="bg-transparent text-white py-32 px-6 md:px-20 overflow-hidden h-[100vh]">
+    <section id={id} className="bg-transparent text-white py-32 px-6 md:px-20 overflow-hidden h-[100vh]">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16">
         {/* LEFT CONTENT */}
         <div className="max-w-xl mt-30">

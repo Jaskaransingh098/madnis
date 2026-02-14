@@ -55,7 +55,7 @@ const companies = [
     }
 ];
 
-export default function CompaniesGallery() {
+export default function CompaniesGallery({ id }: { id?: string }) {
 
     const [activeIndex, setActiveIndex] = useState(2);
     const capsuleRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -90,7 +90,7 @@ export default function CompaniesGallery() {
     }, [activeIndex]);
 
     return (
-        <section className="relative w-full min-h-screen bg-transparent text-white overflow-hidden pt-40">
+        <section id={id} className="relative w-full min-h-screen bg-transparent text-white overflow-hidden pt-40">
 
             {/* Header */}
             <div className="absolute top- left-0 right-0 z-20 flex justify-between items-center px-12">

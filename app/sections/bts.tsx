@@ -35,7 +35,7 @@ const generateRandomHeights = (count: number) => {
   });
 };
 
-export default function BtsMasonry() {
+export default function BtsMasonry({ id }: { id?: string }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -73,7 +73,7 @@ export default function BtsMasonry() {
   };
 
   return (
-    <section className="bg-transparent py-24 overflow-hidden">
+    <section id={id} className="bg-transparent py-24 overflow-hidden">
       <div className="w-full mx-auto px-6">
         <h2 className="text-white text-4xl md:text-5xl font-bold mb-16">
           Behind The Scenes
