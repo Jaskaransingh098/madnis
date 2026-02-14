@@ -91,7 +91,7 @@ export default function ServicesAccordion() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-black text-white py-24 px-6 md:px-16"
+      className="relative bg-transparent text-white py-24 px-6 md:px-16"
       onMouseLeave={hidePreview}
     >
       {/* Preview Image */}

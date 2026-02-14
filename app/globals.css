@@ -74,9 +74,6 @@ section {
   scrollbar-width: none;
 }
 
-main {
-  background-color: #000;
-}
 
 :root {
   --radius: 0.625rem;
@@ -185,4 +182,13 @@ main {
 
 .animate-scrollReverse {
   animation: scrollReverse 14s linear infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

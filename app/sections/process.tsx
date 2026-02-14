@@ -14,7 +14,7 @@ const ImageCard = ({ src }: { src: string }) => (
     />
 
     {/* Glow Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
+    <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition" />
   </div>
 );
 

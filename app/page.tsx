@@ -2,6 +2,7 @@
 
 import SmoothScroll from "./components/SmoothScroll";
 import SmoothCursor from "./components/SmoothCursor";
+import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import Hero from "./sections/hero";
 import BTS from "./sections/bts";
 import Services from "./sections/services";
@@ -27,8 +28,9 @@ export default function Home() {
         scaleOnClick={true}
         glowEffect={true}
       />
+      <HeroGeometric />
 
-      <main>
+      <main className="z-10">
         <Navbar />
         <Hero />
         <Gallery/>
