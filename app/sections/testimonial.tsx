@@ -175,7 +175,7 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="bg-black text-white py-32 px-6 md:px-20 overflow-hidden h-[100vh]">
+    <section className="bg-transparent text-white py-32 px-6 md:px-20 overflow-hidden h-[100vh]">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16">
         {/* LEFT CONTENT */}
         <div className="max-w-xl mt-30">

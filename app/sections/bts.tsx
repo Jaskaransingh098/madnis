@@ -73,7 +73,7 @@ export default function BtsMasonry() {
   };
 
   return (
-    <section className="bg-black py-24 overflow-hidden">
+    <section className="bg-transparent py-24 overflow-hidden">
       <div className="w-full mx-auto px-6">
         <h2 className="text-white text-4xl md:text-5xl font-bold mb-16">
           Behind The Scenes
