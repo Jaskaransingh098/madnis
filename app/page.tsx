@@ -38,13 +38,11 @@ export default function Home() {
           <Hero id="hero" />
         </SectionReveal>
 
-        <SectionReveal>
-          <Gallery id="gallery" />
-        </SectionReveal>
+       
 
-        <SectionReveal>
+        {/* <SectionReveal>
           <CompaniesCapsuleSection id="companies" />
-        </SectionReveal>
+        </SectionReveal> */}
 
         <SectionReveal>
           <OurWork id="work" />
@@ -54,12 +52,16 @@ export default function Home() {
           <WorkVideos id="videos" />
         </SectionReveal>
 
-        <SectionReveal>
-          <Process id="process" />
+         <SectionReveal>
+          <Gallery id="gallery" />
         </SectionReveal>
 
         <SectionReveal>
           <Services id="services" />
+        </SectionReveal>
+
+        <SectionReveal>
+          <Process id="process" />
         </SectionReveal>
 
         <SectionReveal>

@@ -1,9 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-
-const videos = [
+const allImages = [
   "/videos-section/compressed_work1.mp4",
   "/videos-section/compressed_work2.mp4",
   "/videos-section/compressed_work3.mp4",
@@ -16,34 +13,67 @@ const videos = [
   "/videos-section/compressed_work10.mp4",
   "/videos-section/compressed_work11.mp4",
   "/videos-section/compressed_work12.mp4",
-  "/videos-section/compressed_work13.mp4",
-  "/videos-section/compressed_work14.mp4",
-  "/videos-section/compressed_work15.mp4",
-  "/videos-section/compressed_work16.mp4",
-  "/videos-section/compressed_work17.mp4",
+
 ];
 
-export default function OurWork( { id }: { id?: string }) {
-  const [centerIndex, setCenterIndex] = useState(2);
-  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+const split = [
+  allImages.slice(0, 3),
+  allImages.slice(3, 6),
+  allImages.slice(6, 9),
+  allImages.slice(9, 12),
+];
 
-  const getIndex = (offset: number) =>
-    (centerIndex + offset + videos.length) % videos.length;
-
-  const prev = () => {
-    setPlayingIndex(null);
-    setCenterIndex((p) => (p - 1 + videos.length) % videos.length);
-  };
-
-  const next = () => {
-    setPlayingIndex(null);
-    setCenterIndex((p) => (p + 1) % videos.length);
-  };
+function ScrollColumn({
+  images,
+  reverse = false,
+}: {
+  images: string[];
+  reverse?: boolean;
+}) {
+  const duplicated = [...images, ...images];
 
   return (
-    <section id={id} className="min-h-screen bg-transparent text-white py-14 overflow-hidden">
+    <div className="flex flex-col gap-4 w-1/4 overflow-hidden">
+      <div
+        className={`flex flex-col gap-4 ${
+          reverse ? "animate-scrollReverse" : "animate-scroll"
+        }`}
+      >
+        {duplicated.map((src, i) => (
+          <div
+            key={i}
+            className="relative w-full h-[250px] rounded-lg overflow-hidden border border-white/10 shadow-xl"
+          >
+            <div className="absolute inset-0 bg-blue-600/20 mix-blend-overlay z-10 pointer-events-none" />
+
+            {/* ⚡ Faster than Next Image for animations */}
+            <video
+              src={src}
+              muted
+              autoPlay
+              loop
+              playsInline
+              preload="none"
+              // loading="lazy"
+              className="w-full h-full object-cover"
+              // alt=""
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function OurWork({ id }: { id?: string }) {
+
+  return (
+    <section
+      id={id}
+      className="min-h-screen h-[120vh] bg-transparent text-white py-14 overflow-hidden"
+    >
       {/* Header */}
-      <div className="w-[82%] mx-auto mb-20 flex justify-between items-end">
+      <div className="w-[85%] mx-auto mb-40 flex justify-between items-end">
         <p className="text-md text-gray-400 max-w-[460px] leading-relaxed ml-25 pb-25">
           Some people create content. We create obsession. Every project we
           touch turns into something that refuses to be ignored, lives rent-free
@@ -56,79 +86,19 @@ export default function OurWork( { id }: { id?: string }) {
         </h2>
       </div>
 
-      {/* Carousel */}
-      <div className="relative w-full max-w-[1500px] h-[480px] mx-auto flex items-center justify-center">
-        {[-2, -1, 0, 1, 2].map((offset) => {
-          const index = getIndex(offset);
-          const src = videos[index];
-          const poster = src.replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
-          const isPlaying = playingIndex === index;
-
-          const styleMap = {
-            "-2": "translate-x-[-560px] translate-y-[-70px] rotate-[7deg] scale-[0.98] opacity-80 z-30",
-            "-1": "translate-x-[-280px] translate-y-[-30px] rotate-[-6deg] scale-[1] opacity-85 z-30",
-            "0": "translate-x-0 translate-y-[35px] rotate-0 scale-[1.08] z-30",
-            "1": "translate-x-[300px] translate-y-[-20px] rotate-[-6deg] scale-[0.9] opacity-85 z-30",
-            "2": "translate-x-[560px] translate-y-[-40px] rotate-[2deg] scale-[0.98] opacity-80 z-30",
-          };
-
-          return (
-            <div
-              key={index}
-              onClick={() => {
-                if (offset === 0) setPlayingIndex(index);
-              }}
-              className={`group absolute w-[280px] h-[440px] rounded-[28px] overflow-hidden transition-all duration-700 ease-out shadow-2xl cursor-pointer ${styleMap[offset.toString() as keyof typeof styleMap]}`}
-            >
-              {isPlaying ? (
-                <video
-                  src={src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <>
-                  <img
-                    src={poster}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-
-                  {/* Play Overlay */}
-                  {offset === 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                      <Play
-                        size={46}
-                        className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Arrows */}
-      <div className="flex justify-center gap-6 mt-20">
-        <button
-          onClick={prev}
-          className="w-14 h-14 border border-white/40 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
+      <div className="absolute top-[15%] left-0 w-full h-full flex justify-center pointer-events-none perspective-[500px]">
+        <div
+          className="w-[200%] flex justify-center gap-6"
+          style={{
+            transform: "rotateX(35deg) translateY(-150px) translateZ(-170px)",
+            transformStyle: "preserve-3d",
+          }}
         >
-          <ChevronLeft />
-        </button>
-
-        <button
-          onClick={next}
-          className="w-14 h-14 border border-white/40 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
-        >
-          <ChevronRight />
-        </button>
+          <ScrollColumn images={split[0]} />
+          <ScrollColumn images={split[1]} reverse />
+          <ScrollColumn images={split[2]} />
+          <ScrollColumn images={split[3]} reverse />
+        </div>
       </div>
     </section>
   );

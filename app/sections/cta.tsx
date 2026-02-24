@@ -9,7 +9,6 @@ const interests = [
   "Become a Partner",
   "Working with you",
   "General Information",
-  "Medical Enquiries",
   "Other",
 ];
 

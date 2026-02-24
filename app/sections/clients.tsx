@@ -64,7 +64,7 @@ export default function Clients({ id }: { id?: string }) {
             <img
               src={img}
               alt="client"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-200"
             />
           </div>
         ))}

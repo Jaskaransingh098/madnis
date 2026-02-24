@@ -13,7 +13,7 @@ export default function Hero({ id }: { id?: string }) {
     <section id={id} className="relative w-full h-screen overflow-hidden">
       {/* Poster Image (Instant load) */}
       <img
-        src="/hero-section/compressed_hero-section-video.webp"
+        src="/hero-section/hero section video-small-placeholder.webp"
         className="absolute inset-0 w-full h-full object-cover"
         alt="Hero background"
         loading="eager"
@@ -26,17 +26,17 @@ export default function Hero({ id }: { id?: string }) {
         loop
         playsInline
         preload="metadata"
-        poster="/hero-section/compressed_hero-section-video.webp"
+        poster="/hero-section/hero section video-small-placeholder.webp"
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/hero-section/hero-optimized.mp4" type="video/mp4" />
+        <source src="/hero-section/output-web.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/80" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
+      {/* <div className="relative z-10 h-full flex items-center">
         <div className="max-w-[600px] ml-[5vw] text-white">
           <TextType
             text="Crafting Content That Screams Magic."
@@ -51,19 +51,36 @@ export default function Hero({ id }: { id?: string }) {
             cursorBlinkDuration={0.5}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* CTA */}
-      <div className="absolute bottom-50 left-[5vw] z-10">
+      {/* Center CTA */}
+      <div className="absolute inset-0 z-20 flex items-end mb-40 justify-center">
         <button
           onClick={() => {
             document
               .getElementById("contact")
               ?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="px-8 py-3 rounded-full border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition"
+          className="
+  relative
+  px-12 py-4
+  text-lg font-medium tracking-wide
+  rounded-full
+  bg-gradient-to-r from-[#D4AF37] via-[#E6C76B] to-[#C9A227]
+  text-black
+  border border-white/20
+  backdrop-blur-xl
+  shadow-[0_10px_40px_rgba(212,175,55,0.35)]
+  before:absolute before:inset-0 before:rounded-full
+  before:bg-white/10 before:opacity-0
+  hover:before:opacity-100
+  hover:scale-105
+  hover:shadow-[0_15px_60px_rgba(212,175,55,0.6)]
+  transition-all duration-500 ease-out
+"
         >
-          Start Your Madnis journey
+          Start Your Madnis Journey
         </button>
       </div>
 

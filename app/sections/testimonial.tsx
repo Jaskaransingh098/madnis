@@ -134,9 +134,9 @@ export default function TestimonialsSection({ id }: { id?: string }) {
       );
     };
 
-    animateColumn(col1.current, 1, 60); // down → up
-    animateColumn(col2.current, -1, 70); // up → down
-    animateColumn(col3.current, 1, 65); // down → up
+    animateColumn(col1.current, 1, 90); // down → up
+    animateColumn(col2.current, -1, 100); // up → down
+    animateColumn(col3.current, 1, 95); // down → up
   }, []);
 
   const renderCard = (item: Testimonial, i: number) => (

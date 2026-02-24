@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import gsap from "gsap";
-import { motion } from "framer-motion";
-import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
+import { useState } from "react";
+import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 const videos = [
   "/bts/compressed_1.mp4",
@@ -17,291 +15,122 @@ const videos = [
   "/bts/compressed_9.MOV",
   "/bts/compressed_10.MOV",
   "/bts/compressed_11.MOV",
-  // "/bts/compressed_12.mp4",
 ];
 
-const heights = [
-  "h-[160px]",
-  "h-[200px]",
-  "h-[240px]",
-  "h-[280px]",
-  "h-[320px]",
-  "h-[360px]",
-];
+export default function OurWork({ id }: { id?: string }) {
+  const [centerIndex, setCenterIndex] = useState(2);
+  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 
-const generateRandomHeights = (count: number) => {
-  return Array.from({ length: count }, () => {
-    return heights[Math.floor(Math.random() * heights.length)];
-  });
-};
+  const getIndex = (offset: number) =>
+    (centerIndex + offset + videos.length) % videos.length;
 
-export default function BtsMasonry({ id }: { id?: string }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<gsap.core.Tween | null>(null);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
-
-  const randomHeights = useMemo(() => generateRandomHeights(videos.length), []);
-
-  useEffect(() => {
-    if (!scrollRef.current) return;
-
-    const width = scrollRef.current.scrollWidth / 2;
-
-    animationRef.current = gsap.to(scrollRef.current, {
-      x: -width,
-      duration: 25,
-      ease: "none",
-      repeat: -1,
-    });
-
-    return () => {
-      animationRef.current?.kill();
-    };
-  }, []);
-
-  const pause = () => animationRef.current?.pause();
-  const play = () => animationRef.current?.play();
-
-  const handleOpenVideo = (src: string) => {
-    setActiveVideo(src);
-    pause();
+  const prev = () => {
+    setPlayingIndex(null);
+    setCenterIndex((p) => (p - 1 + videos.length) % videos.length);
   };
 
-  const handleCloseVideo = () => {
-    setActiveVideo(null);
-    play();
+  const next = () => {
+    setPlayingIndex(null);
+    setCenterIndex((p) => (p + 1) % videos.length);
   };
 
   return (
-    <section id={id} className="bg-transparent py-24 overflow-hidden">
-      <div className="w-full mx-auto px-6">
-        <h2 className="text-white text-4xl md:text-5xl font-bold mb-16">
-          Behind The Scenes
-        </h2>
+    <section id={id} className="py-24 bg-transparent overflow-hidden">
+      <div className="w-full px-6">
+        <div className="max-w-7xl mx-auto mb-24 grid md:grid-cols-2 items-start gap-10">
+          {/* LEFT PARAGRAPH */}
+          <div>
+            <p className="text-gray-400 text-lg leading-relaxed max-w-md">
+              Every frame tells a story. From creative direction to final
+              execution, our behind-the-scenes moments capture the energy,
+              precision, and passion that shape every production we craft.
+            </p>
+          </div>
 
-        <div className="overflow-hidden">
-          <div ref={scrollRef} className="flex gap-6 w-max">
-            {/* Duplicate for infinite scroll */}
-            {[...Array(2)].map((_, dup) => (
-              <div key={dup} className="flex gap-6">
-                {splitIntoColumns(videos, randomHeights).map(
-                  (column, colIndex) => (
-                    <div
-                      key={colIndex}
-                      className="flex flex-col gap-6 w-[240px]"
-                    >
-                      {column.map((item, i) => (
-                        <VideoCard
-                          key={i}
-                          src={item.src}
-                          height={item.height}
-                          pause={pause}
-                          play={play}
-                          onOpen={handleOpenVideo}
+          {/* RIGHT TITLE */}
+          <div className="md:text-right">
+            <h2 className="text-white text-5xl md:text-7xl font-semibold tracking-tight">
+              BEHIND THE SCENES
+            </h2>
+          </div>
+        </div>
+
+        {/* STACKED CAROUSEL */}
+        <div className="relative w-full max-w-[1500px] h-[480px] mx-auto flex items-center justify-center">
+          {[-2, -1, 0, 1, 2].map((offset) => {
+            const index = getIndex(offset);
+            const src = videos[index];
+            const poster = src.replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
+            const isPlaying = playingIndex === index;
+
+            const styleMap = {
+              "-2": "translate-x-[-560px] translate-y-[-70px] rotate-[7deg] scale-[0.95] opacity-60 z-10",
+              "-1": "translate-x-[-280px] translate-y-[-30px] rotate-[-6deg] scale-[1] opacity-80 z-20",
+              "0": "translate-x-0 translate-y-[35px] rotate-0 scale-[1.08] z-30",
+              "1": "translate-x-[300px] translate-y-[-20px] rotate-[-6deg] scale-[0.95] opacity-80 z-20",
+              "2": "translate-x-[560px] translate-y-[-40px] rotate-[4deg] scale-[0.9] opacity-60 z-10",
+            };
+
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  if (offset === 0) setPlayingIndex(index);
+                }}
+                className={`group absolute w-[280px] h-[440px] rounded-[28px] overflow-hidden transition-all duration-700 ease-out shadow-2xl cursor-pointer ${
+                  styleMap[offset.toString() as keyof typeof styleMap]
+                }`}
+              >
+                {isPlaying ? (
+                  <video
+                    src={src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={poster}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {offset === 0 && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <Play
+                          size={46}
+                          className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
                         />
-                      ))}
-                    </div>
-                  ),
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </div>
 
-      {activeVideo && (
-        <VideoModal src={activeVideo} onClose={handleCloseVideo} />
-      )}
-    </section>
-  );
-}
-
-function splitIntoColumns(
-  videos: string[],
-  heights: string[],
-  columnCount = 4,
-): Array<Array<{ src: string; height: string }>> {
-  const columns: Array<Array<{ src: string; height: string }>> = Array.from(
-    { length: columnCount },
-    () => [],
-  );
-
-  videos.forEach((video, index) => {
-    columns[index % columnCount].push({
-      src: video,
-      height: heights[index],
-    });
-  });
-
-  return columns;
-}
-function VideoCard({
-  src,
-  height,
-  pause,
-  play,
-  onOpen,
-}: {
-  src: string;
-  height: string;
-  pause: () => void;
-  play: () => void;
-  onOpen: (src: string) => void;
-}) {
-  // Convert video path to poster path automatically
-  const poster = src.replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
-
-  return (
-    <motion.div
-      onMouseEnter={pause}
-      onMouseLeave={play}
-      onClick={() => onOpen(src)}
-      whileHover={{ scale: 1.05 }}
-      className={`group relative rounded-2xl overflow-hidden shadow-xl ${height} cursor-pointer`}
-    >
-      <img
-        src={poster}
-        alt="Video poster"
-        loading="lazy"
-        className="w-full h-full object-cover"
-      />
-
-      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-        <Play
-          size={36}
-          className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
-        />
-      </div>
-    </motion.div>
-  );
-}
-
-function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.play().catch(() => setIsPlaying(false));
-
-    const updateProgress = () => {
-      if (!video.duration) return;
-      setProgress((video.currentTime / video.duration) * 100);
-    };
-
-    video.addEventListener("timeupdate", updateProgress);
-
-    return () => {
-      video.removeEventListener("timeupdate", updateProgress);
-    };
-  }, [src]);
-
-  useEffect(() => {
-    const onEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", onEscape);
-
-    return () => {
-      window.removeEventListener("keydown", onEscape);
-    };
-  }, [onClose]);
-
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-  };
-
-  const onSeek = (value: string) => {
-    const video = videoRef.current;
-    if (!video || !video.duration) return;
-
-    const nextProgress = Number(value);
-    video.currentTime = (nextProgress / 100) * video.duration;
-    setProgress(nextProgress);
-  };
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 px-4"
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-4xl rounded-2xl border border-white/15 bg-zinc-950 p-4 md:p-6"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="mb-3 flex justify-end">
+        {/* ARROWS */}
+        <div className="flex justify-center gap-6 mt-20">
           <button
-            onClick={onClose}
-            className="rounded-full border border-white/20 p-2 text-white transition hover:bg-white/10"
-            aria-label="Close video"
+            onClick={prev}
+            className="w-14 h-14 border border-white/40 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
           >
-            <X size={18} />
+            <ChevronLeft />
+          </button>
+
+          <button
+            onClick={next}
+            className="w-14 h-14 border border-white/40 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition"
+          >
+            <ChevronRight />
           </button>
         </div>
-
-        <div className="overflow-hidden rounded-xl">
-          <video
-            ref={videoRef}
-            src={src}
-            className="max-h-[70vh] w-full object-cover"
-            playsInline
-          />
-        </div>
-
-        <div className="mt-4 flex flex-col gap-4">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={progress}
-            onChange={(e) => onSeek(e.target.value)}
-            className="h-1 w-full cursor-pointer appearance-none rounded-full bg-white/20"
-            aria-label="Seek video"
-          />
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={togglePlay}
-              className="rounded-full border border-white/20 p-2 text-white transition hover:bg-white/10"
-              aria-label={isPlaying ? "Pause video" : "Play video"}
-            >
-              {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-            </button>
-
-            <button
-              onClick={toggleMute}
-              className="rounded-full border border-white/20 p-2 text-white transition hover:bg-white/10"
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-            >
-              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-            </button>
-          </div>
-        </div>
       </div>
-    </div>
+    </section>
   );
 }
