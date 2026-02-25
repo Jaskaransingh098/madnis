@@ -6,8 +6,8 @@
 
 html,
 body {
-  scroll-behavior: auto;
-  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  overscroll-behavior: auto;
   overflow-x: hidden;
 }
 
@@ -58,9 +58,9 @@ body {
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-section {
+/* section {
   min-height: 100vh;
-}
+} */
 
 .writing-vertical {
   writing-mode: vertical-rl;

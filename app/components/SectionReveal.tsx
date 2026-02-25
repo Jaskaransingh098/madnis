@@ -48,7 +48,8 @@ export default function SectionReveal({
       scrollTrigger: {
         trigger: el,
         start: "top 50%",
-        toggleActions: "play none none reset",
+        toggleActions: "play none none none",
+        once: true,
       },
     });
   }, []);

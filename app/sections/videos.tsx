@@ -1,18 +1,18 @@
 "use client";
 
 const allImages = [
-  "/videos-section/compressed_work1.mp4",
-  "/videos-section/compressed_work2.mp4",
-  "/videos-section/compressed_work3.mp4",
-  "/videos-section/compressed_work4.mp4",
-  "/videos-section/compressed_work5.mp4",
-  "/videos-section/compressed_work6.mp4",
-  "/videos-section/compressed_work7.mp4",
-  "/videos-section/compressed_work8.mp4",
-  "/videos-section/compressed_work9.mp4",
-  "/videos-section/compressed_work10.mp4",
-  "/videos-section/compressed_work11.mp4",
-  "/videos-section/compressed_work12.mp4",
+  "/videos-section/compressed_work1_1MB.mp4",
+  "/videos-section/compressed_work2_1MB.mp4",
+  "/videos-section/compressed_work3_1MB.mp4",
+  "/videos-section/compressed_work4_1MB.mp4",
+  "/videos-section/compressed_work5_1MB.mp4",
+  "/videos-section/compressed_work6_1MB.mp4",
+  "/videos-section/compressed_work7_1MB.mp4",
+  "/videos-section/compressed_work8_1MB.mp4",
+  "/videos-section/compressed_work9_1MB.mp4",
+  "/videos-section/compressed_work10_1MB.mp4",
+  "/videos-section/compressed_work11_1MB.mp4",
+  "/videos-section/compressed_work12_1MB.mp4",
 
 ];
 
@@ -42,11 +42,10 @@ function ScrollColumn({
         {duplicated.map((src, i) => (
           <div
             key={i}
-            className="relative w-full h-[250px] rounded-lg overflow-hidden border border-white/10 shadow-xl"
+            className="relative w-full rounded-lg overflow-hidden border border-white/10 shadow-xl"
           >
             <div className="absolute inset-0 bg-blue-600/20 mix-blend-overlay z-10 pointer-events-none" />
 
-            {/* ⚡ Faster than Next Image for animations */}
             <video
               src={src}
               muted
@@ -54,7 +53,7 @@ function ScrollColumn({
               loop
               playsInline
               preload="none"
-              // loading="lazy"
+              // loading="lazy".
               className="w-full h-full object-cover"
               // alt=""
             />

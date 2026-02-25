@@ -7,39 +7,39 @@ import Image from "next/image";
 
 type Service = {
   title: string;
-  items: string[];
+  description: string;
   image: string;
 };
 
 const services: Service[] = [
   {
     title: "Design & Branding",
-    items: ["Creative Platform", "Campaign Concepts", "Design Ops"],
+    description:
+      "We craft distinctive brand identities that resonate deeply with your audience. From visual systems and brand strategy to campaign concepts and creative execution, we build cohesive brand experiences that communicate clarity, emotion, and long-term value.",
     image: "/client-logos/4.png",
   },
   {
     title: "Development & Web Design",
-    items: ["Motion Graphics", "Brand Films", "Product Videos"],
+    description:
+      "We design and develop high-performance, visually immersive websites tailored to your brand goals. Our process combines modern UI/UX principles, clean code architecture, and responsive design to deliver seamless digital experiences across all devices.",
     image: "/client-logos/3.png",
   },
   {
     title: "Video Production Services",
-    items: ["UI / UX", "Development", "Animations"],
+    description:
+      "From concept to final cut, we produce compelling visual stories that elevate your brand presence. Whether it’s product films, brand storytelling, or promotional content, our production approach ensures cinematic quality and strategic messaging.",
     image: "/client-logos/2.png",
   },
   {
     title: "Animation",
-    items: ["Identity", "Messaging", "Guidelines"],
+    description:
+      "We bring ideas to life through motion. Our animation services include explainer videos, motion graphics, and immersive visual storytelling designed to simplify complex ideas and engage audiences with creativity and precision.",
     image: "/client-logos/1.png",
   },
   {
-    title: "Audio Engineering",
-    items: ["Identity", "Messaging", "Guidelines"],
-    image: "/client-logos/1.png",
-  },
-  {
-    title: "Photography Services",
-    items: ["Identity", "Messaging", "Guidelines"],
+    title: "AI Automation",
+    description:
+      "We integrate intelligent automation systems to streamline workflows and enhance business efficiency. From AI-powered chatbots to smart process automation, we help brands reduce manual effort, improve accuracy, and scale operations effectively.",
     image: "/client-logos/1.png",
   },
 ];
@@ -116,7 +116,30 @@ export default function ServicesAccordion({ id }: { id?: string }) {
       </AnimatePresence>
 
       {/* Heading */}
-      <h2 className="text-6xl md:text-9xl font-bold mb-20">What We Do</h2>
+      <div className="relative mb-24 text-right ml-auto max-w-3xl">
+        {/* Huge Background Word (shifted right) */}
+        <div className="absolute -top-10 right-0 text-[120px] md:text-[180px] font-bold text-white/5 select-none pointer-events-none">
+          SERVICES
+        </div>
+
+        {/* Small Label */}
+        <span className="uppercase tracking-[0.4em] text-sm text-yellow-500">
+          Our Expertise
+        </span>
+
+        {/* Main Heading */}
+        <h2 className="mt-6 text-5xl md:text-7xl font-semibold leading-tight">
+          Solutions Built for <br />
+          <span className="text-yellow-500">Growth & Impact</span>
+        </h2>
+
+        {/* Supporting Paragraph */}
+        <p className="mt-8 text-gray-400 text-lg leading-relaxed">
+          We combine strategy, creativity, and technology to craft scalable
+          solutions that elevate brands, streamline operations, and create
+          measurable business transformation.
+        </p>
+      </div>
 
       {/* Services */}
       <div className="space-y-6">
@@ -144,19 +167,17 @@ export default function ServicesAccordion({ id }: { id?: string }) {
 
               <AnimatePresence>
                 {isOpen && (
-                  <motion.ul
+                  <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-18 text-gray-300 w-[70vw] overflow-hidden"
+                    className="mt-10 w-[60vw] overflow-hidden"
                   >
-                    {service.items.map((item, i) => (
-                      <li key={i} className="hover:text-yellow-400 transition">
-                        {item}
-                      </li>
-                    ))}
-                  </motion.ul>
+                    <p className="text-gray-400 leading-relaxed text-lg font-bold">
+                      {service.description}
+                    </p>
+                  </motion.div>
                 )}
               </AnimatePresence>
             </div>

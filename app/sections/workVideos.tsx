@@ -4,17 +4,17 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const videos = [
-  "/horizontal/v1.mp4",
-  "/horizontal/v2.mp4",
-  "/horizontal/v3.mp4",
-  "/horizontal/v4.mp4",
-  "/horizontal/v5.mp4",
-  "/horizontal/v6.mp4",
-  "/horizontal/v7.mp4",
-  "/horizontal/v8.mp4",
-  "/horizontal/v9.mp4",
-  "/horizontal/v10.mp4",
-  "/horizontal/v11.mp4",
+  "/horizontal/v1_1MB.mp4",
+  "/horizontal/v2_1MB.mp4",
+  // "/horizontal/v3_1MB.mp4",
+  "/horizontal/v4_1MB.mp4",
+  "/horizontal/v5_1MB.mp4",
+  "/horizontal/v6_1MB.mp4",
+  "/horizontal/v7_1MB.mp4",
+  "/horizontal/v8_1MB.mp4",
+  "/horizontal/v9_1MB.mp4",
+  "/horizontal/v10_1MB.mp4",
+  "/horizontal/v11_1MB.mp4",
 ];
 
 export default function WorkVideos({ id }: { id?: string }) {

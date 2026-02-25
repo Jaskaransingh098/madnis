@@ -26,7 +26,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 10%", "end 50%"],
+    offset: ["start 20%", "end 80%"],
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
@@ -37,7 +37,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-black dark:bg-neutral-950 font-sans md:px-10"
       ref={containerRef}
     >
-
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
           <div
@@ -62,10 +61,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </div>
         ))}
         <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
+          // style={{
+          //   height: height + "px",
+          // }}
+
+          className="absolute md:left-8 left-8 top-0 bottom-0 overflow-hidden w-[2px]
+  bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
+  from-transparent via-neutral-200 dark:via-neutral-700 to-transparent
+  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+
+          // className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
         >
           <motion.div
             style={{

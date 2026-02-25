@@ -21,7 +21,7 @@ import CompaniesCapsuleSection from "./sections/companiesWork";
 export default function Home() {
   return (
     <>
-      <SmoothScroll />
+      {/* <SmoothScroll /> */}
       <SmoothCursor
         size={30}
         color="white"

@@ -1,36 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const videos = [
-  "/bts/compressed_1.mp4",
-  "/bts/compressed_2.MOV",
-  "/bts/compressed_3.MP4",
-  "/bts/compressed_4.MP4",
-  "/bts/compressed_5.MOV",
-  "/bts/compressed_6.MOV",
-  "/bts/compressed_7.MOV",
-  "/bts/compressed_8.MOV",
-  "/bts/compressed_9.MOV",
-  "/bts/compressed_10.MOV",
-  "/bts/compressed_11.MOV",
+  "/bts/compressed_1_1MB.mp4",
+  "/bts/compressed_2_1MB.mp4",
+  "/bts/compressed_3_1MB.mp4",
+  "/bts/compressed_4_1MB.mp4",
+  "/bts/compressed_5_1MB.mp4",
+  "/bts/compressed_6_1MB.mp4",
+  "/bts/compressed_7_1MB.mp4",
+  "/bts/compressed_8_1MB.mp4",
+  "/bts/compressed_9_1MB.mp4",
+  "/bts/compressed_10_1MB.mp4",
+  "/bts/compressed_11_1MB.mp4",
 ];
 
 export default function OurWork({ id }: { id?: string }) {
   const [centerIndex, setCenterIndex] = useState(2);
-  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 
   const getIndex = (offset: number) =>
     (centerIndex + offset + videos.length) % videos.length;
 
   const prev = () => {
-    setPlayingIndex(null);
     setCenterIndex((p) => (p - 1 + videos.length) % videos.length);
   };
 
   const next = () => {
-    setPlayingIndex(null);
     setCenterIndex((p) => (p + 1) % videos.length);
   };
 
@@ -60,8 +57,9 @@ export default function OurWork({ id }: { id?: string }) {
           {[-2, -1, 0, 1, 2].map((offset) => {
             const index = getIndex(offset);
             const src = videos[index];
-            const poster = src.replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
-            const isPlaying = playingIndex === index;
+            const poster = src
+              .replace("_1MB", "")
+              .replace(/\.(mp4|MP4|mov|MOV)$/, ".webp");
 
             const styleMap = {
               "-2": "translate-x-[-560px] translate-y-[-70px] rotate-[7deg] scale-[0.95] opacity-60 z-10",
@@ -74,41 +72,19 @@ export default function OurWork({ id }: { id?: string }) {
             return (
               <div
                 key={index}
-                onClick={() => {
-                  if (offset === 0) setPlayingIndex(index);
-                }}
                 className={`group absolute w-[280px] h-[440px] rounded-[28px] overflow-hidden transition-all duration-700 ease-out shadow-2xl cursor-pointer ${
                   styleMap[offset.toString() as keyof typeof styleMap]
                 }`}
               >
-                {isPlaying ? (
-                  <video
-                    src={src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={poster}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-
-                    {offset === 0 && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                        <Play
-                          size={46}
-                          className="text-white opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
-                        />
-                      </div>
-                    )}
-                  </>
-                )}
+                <video
+                  src={src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                />
               </div>
             );
           })}

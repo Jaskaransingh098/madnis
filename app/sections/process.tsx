@@ -24,17 +24,21 @@ export default function Process({ id }: { id?: string }) {
       title: "Idea Alchemy",
       content: (
         <div>
-          <p className="text-neutral-300 text-sm md:text-base mb-6">
+          <p className="text-neutral-300 text-sm md:text-xl mb-6">
             You bring us ideas that feel ordinary. We turn them into visual
             storytelling experiences that hit differently. Think of us as your
             creative genie — minus the lamp, plus insane execution speed.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <ImageCard src="/process/interaction-1.jpg" />
-            <ImageCard src="/process/interaction-2.jpg" />
-            <ImageCard src="/process/interaction-3.jpg" />
-            <ImageCard src="/process/interaction-4.jpg" />
+          <div className="mt-10 min-h-[300px] border border-neutral-800 rounded-xl p-8 flex flex-col justify-center">
+            <h4 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              From Concept to Clarity
+            </h4>
+
+            <p className="text-neutral-400 text-lg leading-relaxed">
+              Strategy alignment · Brand positioning · Narrative direction ·
+              Audience psychology
+            </p>
           </div>
         </div>
       ),
@@ -49,12 +53,17 @@ export default function Process({ id }: { id?: string }) {
             psychology to design content that grabs attention and refuses to let
             go.
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <ImageCard src="/process/flow-1.jpg" />
-            <ImageCard src="/process/flow-2.jpg" />
-            <ImageCard src="/process/flow-3.jpg" />
-            <ImageCard src="/process/flow-4.jpg" />
-          </div>
+                  <div className="mt-10 min-h-[300px] border border-neutral-800 rounded-xl p-8 flex flex-col justify-center">
+          <h4 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+            Strategic Creative Thinking
+          </h4>
+
+          <p className="text-neutral-400 text-lg leading-relaxed">
+            Market research · Trend forecasting · Visual ideation · Creative
+            direction
+          </p>
+        </div>
+
         </div>
       ),
     },
@@ -69,12 +78,16 @@ export default function Process({ id }: { id?: string }) {
             impossible to ignore.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <ImageCard src="/process/micro-1.jpg" />
-            <ImageCard src="/process/micro-2.jpg" />
-            <ImageCard src="/process/micro-3.jpg" />
-            <ImageCard src="/process/micro-4.jpg" />
-          </div>
+          <div className="mt-10 min-h-[300px] border border-neutral-800 rounded-xl p-8 flex flex-col justify-center">
+          <h4 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+            Production With Precision
+          </h4>
+
+          <p className="text-neutral-400 text-lg leading-relaxed">
+            Visual design · Motion graphics · Video production · Sound &
+            storytelling
+          </p>
+        </div>
         </div>
       ),
     },
@@ -89,12 +102,16 @@ export default function Process({ id }: { id?: string }) {
             question their life choices.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <ImageCard src="/process/motion-1.jpg" />
-            <ImageCard src="/process/motion-2.jpg" />
-            <ImageCard src="/process/motion-3.jpg" />
-            <ImageCard src="/process/motion-4.jpg" />
-          </div>
+          <div className="mt-10 min-h-[300px] border border-neutral-800 rounded-xl p-8 flex flex-col justify-center">
+          <h4 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+            Agile Workflow System
+          </h4>
+
+          <p className="text-neutral-400 text-lg leading-relaxed">
+            Rapid iteration · Seamless collaboration · Quality control ·
+            Performance optimization
+          </p>
+        </div>
         </div>
       ),
     },
@@ -109,12 +126,16 @@ export default function Process({ id }: { id?: string }) {
             unforgettable.
           </p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <ImageCard src="/process/brand-1.jpg" />
-            <ImageCard src="/process/brand-2.jpg" />
-            <ImageCard src="/process/brand-3.jpg" />
-            <ImageCard src="/process/brand-4.jpg" />
-          </div>
+          <div className="mt-10 min-h-[300px] border border-neutral-800 rounded-xl p-8 flex flex-col justify-center">
+          <h4 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+            Measured Results & Growth
+          </h4>
+
+          <p className="text-neutral-400 text-lg leading-relaxed">
+            Performance tracking · Audience insights · Optimization strategy ·
+            Long-term brand scaling
+          </p>
+        </div>
         </div>
       ),
     },
